@@ -2,37 +2,134 @@
     margin: 0;
     padding: 0;
 }
-body{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1daf;
+
+body {
+    background-color: #2B2B2B;
+    font-family: Arial ;
 }
-.box{
+
+.image-container {
+    max-width: 50%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.box {
+    width: 300px;
     height: 30px;
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     cursor: pointer;
     padding: 10px 20px;
     background: #fff;
     border-radius: 30px;
-    align-items: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.box:hover input{
-    /* width: 400px; */
-}
-
-.box input{
-    width: 400px;
+.box input {
+    width: 250px;
+    margin: auto;
+    height: 20px;
     outline: none;
     border: none;
-    /* font-weight: 500; */
-    /* transition: 0.8s; */
-    /* background: transparent; */
+    font-size: 18px;
 }
 
 .box .fa {
-    fill: #1daf;
+    fill: #2B2B2B;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: 100%;
+    font-family: "Open Sans";
+    padding-top: 5px;
+    padding-bottom: 70px;
+    background-color: #111;
+    color: #fff;
+}
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3{
+    font-size: 32px;
+    font-weight: 100;
+    text-transform: capitalize;
+    line-height: 45px;
+}
+
+.footer-content p{
+    max-width: 1000px;
+    margin: 2px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 0 0;
+}
+
+.socials li{
+    margin: 0 5px;
+}
+
+.socials a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.socials a i{
+    font-size: 30px;
+}
+
+.socials svg {
+    fill: #fff;
+}
+
+.socials svg:hover {
+    fill: aqua;
+}
+
+.footer-bottom{
+    position: absolute;
+    bottom: 0;
+    background: #000;
+    width: 100vw;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+}
+
+.footer-bottom a{
+    color: gray;
+}
+
+.footer-bottom p a:hover{
+    color: #fff;
 }
