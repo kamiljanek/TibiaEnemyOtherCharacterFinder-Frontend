@@ -18,7 +18,7 @@ function searchCharacters() {
         let baseUrl = 'https://tibia.bieda.it/api/tibia-eocf/v1/characters?searchText=bobeek&page=1&pageSize=10'
 
         // Adjust the URL to your server script
-        xhr.open('GET', 'https://tibia.bieda.it/api/tibia-eocf/v1/characters/prompt?searchText=' + searchInput + '&page=1&pageSize=10', true);
+        xhr.open('GET', 'https://tibiaa.bieda.it/api/tibia-eocf/v1/characters/prompt?searchText=' + searchInput + '&page=1&pageSize=10', true);
         xhr.send();
     }
 }
