@@ -7,6 +7,10 @@ body, html{
     height: 100%;
 }
 
+html ::placeholder{
+    color: #a0a0a0;
+}
+
 .page{
     height: 100vh;
     background-color: #141d1e;
@@ -31,7 +35,7 @@ img{
     border-radius: 50%;
 }
 
-.box{
+.searchBox{
     width: 300px;
     height: 30px;
     display: flex;
@@ -39,15 +43,16 @@ img{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50%;
+    margin-top: 10%;
     cursor: pointer;
     padding: 10px 20px;
     background: #1a141e;
     border-radius: 30px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    fill: #a0a0a0;
 }
 
-.box input{
+.searchBox input{
     width: 250px;
     margin: auto;
     height: 20px;
@@ -57,12 +62,7 @@ img{
     background: transparent;
 }
 
-.box input::placeholder, .box .fa{
-    color: #a0a0a0;
-    fill: #a0a0a0;
-}
-
-.box input{
+.searchBox input{
     color: #ffffff;
 }
 
@@ -120,4 +120,43 @@ footer{
     fill: #47434B;
     text-transform: uppercase;
     text-decoration: none;
+}
+
+.promptSearchResult{
+    max-height: 20px;
+}
+
+li{
+    list-style-type: none;
+    font-size: 16px;
+    width: 200px;
+    text-transform: capitalize;
+    color: yellowgreen;
+    margin-left: 35px;
+}
+
+.darkening:hover{
+    cursor: pointer;
+    filter: brightness(0.5);
+}
+
+.basicInformationCharacterResult{
+    color: #fff;
+}
+
+.visibleCharactersResult{
+    color: yellowgreen;
+}
+
+.invisibleCharactersResult{
+    color: aquamarine;
+}
+
+.invisibleCharactersResultTable{
+    display: grid;
+    width: 500px;
+    grid-template-columns: 40% 10% 25% 25%;
+    gap: 5px;
+    text-transform: capitalize;
+    border-bottom: 1px dotted yellow;
 }
