@@ -1,1 +1,0 @@
-# TibiaEnemyOtherCharacterFinder-Frontend
