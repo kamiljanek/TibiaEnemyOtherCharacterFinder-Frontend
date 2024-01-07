@@ -1,12 +1,11 @@
 type Props = {
   title?: string;
   children: string | number;
-  class?: string;
 };
 
 function BasicProperty(props: Props) {
   return (
-    <li className={props.class}>
+    <li>
       {props.title && <span>{props.title}: </span>}
       {props.children}
     </li>

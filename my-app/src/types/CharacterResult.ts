@@ -4,16 +4,16 @@ export type CharacterResult = {
   vocation: string;
   level: number;
   lastLogin: Date;
-  formerNames?: string[];
-  formerWorlds?: string[];
+  formerNames: string[];
+  formerWorlds: string[];
   traded: boolean;
-  otherVisibleCharacters?: string[];
-  possibleInvisibleCharacters?: PossibleInvisibleCharacterResult[];
+  otherVisibleCharacters: string[];
+  possibleInvisibleCharacters: PossibleInvisibleCharacterResult[];
 };
 
 export type PossibleInvisibleCharacterResult = {
-  name: string;
+  otherCharacterName: string;
   numberOfMatches: number;
-  firstMatchDate: Date;
-  lastMatchDate: Date;
+  firstMatchDateOnly: Date;
+  lastMatchDateOnly: Date;
 };
