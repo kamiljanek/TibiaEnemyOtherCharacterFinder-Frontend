@@ -1,10 +1,11 @@
 import { CharacterResult } from "../types/CharacterResult";
 import { format } from "date-fns";
-import { Button, ButtonGroup, OverlayTrigger, Popover } from "react-bootstrap";
-import PossibleOtherCharacter from "./PossibleOtherCharacter";
+import CharacterBasicProperty from "./BasicPropertyResult";
+import StringArrayResult from "./StringArrayResult";
+import CharactersArrayResult from "./CharactersArrayResult";
 
 type Props = {
-  children: CharacterResult;
+  propertyValue: CharacterResult;
 };
 
 function Character(props: Props) {
@@ -19,124 +20,44 @@ function Character(props: Props) {
     traded,
     otherVisibleCharacters,
     possibleInvisibleCharacters,
-  } = props.children;
+  } = props.propertyValue;
 
   return (
-    <>
-      <div className="d-grid mt-4">
-        <ButtonGroup size="sm">
-          <Button variant="danger">Name:</Button>
-          <Button variant="outline-danger">
-            {name} {traded ? "(traded)" : ""}
-          </Button>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <Button variant="success">World:</Button>
-          <Button variant="outline-success">{world}</Button>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <Button variant="success">Vocation:</Button>
-          <Button variant="outline-success">{vocation}</Button>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <Button variant="success">Level:</Button>
-          <Button variant="outline-success">{level}</Button>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <Button variant="success">Last Login:</Button>
-          <Button variant="outline-success">
-            {format(lastLogin, "dd.MM.yyyy HH:mm:ss")}
-          </Button>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <OverlayTrigger
-            trigger="click"
-            key="Former Names"
-            placement="right"
-            overlay={
-              <Popover id={`popover-positioned-right`}>
-                <Popover.Body>
-                  {formerNames.map((name) => (
-                    <p>
-                      <strong>{name}</strong>
-                    </p>
-                  ))}
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <Button variant="outline-success">Former Names</Button>
-          </OverlayTrigger>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <OverlayTrigger
-            trigger="click"
-            key="Former Worlds"
-            placement="right"
-            overlay={
-              <Popover id={`popover-positioned-right`}>
-                <Popover.Body>
-                  {formerWorlds.map((world) => (
-                    <p>
-                      <strong>{world}</strong>
-                    </p>
-                  ))}
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <Button variant="outline-success">Former Worlds</Button>
-          </OverlayTrigger>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <OverlayTrigger
-            trigger="click"
-            key="Other Visible Characters"
-            placement="right"
-            overlay={
-              <Popover id={`popover-positioned-right`}>
-                <Popover.Body>
-                  {otherVisibleCharacters.map((characterName) => (
-                    <p>
-                      <strong>{characterName}</strong>
-                    </p>
-                  ))}
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <Button variant="outline-success">Other Visible Characters</Button>
-          </OverlayTrigger>
-        </ButtonGroup>
-        <br />
-        <ButtonGroup size="sm">
-          <OverlayTrigger
-            trigger="click"
-            key="Possible Other Characters"
-            placement="right"
-            overlay={
-              <Popover
-                id={`popover-positioned-right`}
-                style={{ maxWidth: "600px" }}
-              >
-                <PossibleOtherCharacter>
-                  {possibleInvisibleCharacters}
-                </PossibleOtherCharacter>
-              </Popover>
-            }
-          >
-            <Button variant="outline-success">Possible Other Characters</Button>
-          </OverlayTrigger>
-        </ButtonGroup>
-      </div>
-    </>
+    <div
+      className="d-grid mt-4"
+      style={{ minWidth: "500px", maxWidth: "1000px" }}
+    >
+      <CharacterBasicProperty
+        propertyName="Name"
+        propertyValue={`${name} ${traded ? "(traded)" : ""}`}
+      />
+      <CharacterBasicProperty propertyName="World" propertyValue={world} />
+      <CharacterBasicProperty
+        propertyName="Vocation"
+        propertyValue={vocation}
+      />
+      <CharacterBasicProperty propertyName="Level" propertyValue={level} />
+      <CharacterBasicProperty
+        propertyName="Last Login"
+        propertyValue={format(lastLogin, "dd.MM.yyyy HH:mm:ss")}
+      />
+      <StringArrayResult
+        propertyName="Former Names"
+        propertyValue={formerNames}
+      />
+      <StringArrayResult
+        propertyName="Former Worlds"
+        propertyValue={formerWorlds}
+      />
+      <StringArrayResult
+        propertyName="Other Visible Characters"
+        propertyValue={otherVisibleCharacters}
+      />
+      <CharactersArrayResult
+        propertyName="Possible Other Characters"
+        propertyValue={possibleInvisibleCharacters}
+      />
+    </div>
   );
 }
 

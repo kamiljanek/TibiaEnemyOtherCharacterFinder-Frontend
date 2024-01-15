@@ -8,7 +8,6 @@ type Props = {
 export const PageContainer = (props: Props) => {
   const containerStyle = {
     minHeight: "100vh",
-    backgroundColor: "#212529",
   };
 
   return (

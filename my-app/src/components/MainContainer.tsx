@@ -8,8 +8,8 @@ function MainContainer() {
 
   const [character, setCharacter] = useState<CharacterResult | null>(null);
 
-  const getCharacter = (name: string) => {
-    fetch(`https://tibia.bieda.it/api/tibia-eocf/v1/characters/${name}`)
+  const getCharacter = () => {
+    fetch(`https://tibia.bieda.it/api/tibia-eocf/v1/characters/${input}`)
       .then((res) => {
         return res.json();
       })
@@ -23,20 +23,21 @@ function MainContainer() {
       <Row className="justify-content-md-center">
         <Col md="auto">
           <Form.Control
-            className="bg-dark-subtle"
             type="text"
             placeholder="Character Name"
             onChange={(e) => setInput(e.target.value)}
           />
         </Col>
         <Col md="auto">
-          <Button variant="outline-info" onClick={() => getCharacter(input)}>
+          <Button variant="outline-info" onClick={() => getCharacter()}>
             Search
           </Button>
         </Col>
       </Row>
       <Row className="justify-content-md-center">
-        <Col md="auto">{character && <Character>{character}</Character>}</Col>
+        <Col md="auto">
+          {character && <Character propertyValue={character} />}
+        </Col>
       </Row>
     </Container>
   );
