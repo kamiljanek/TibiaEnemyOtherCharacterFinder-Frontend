@@ -1,12 +1,14 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { CharacterResult } from "../types/CharacterResult";
+import { CharacterResponse, ErrorResponse } from "../types/CharacterResult";
 import { useState } from "react";
-import Character from "./Character";
+import CharacterResult from "./CharacterResult";
 
 function MainContainer() {
   const [input, setInput] = useState<string>("");
 
-  const [character, setCharacter] = useState<CharacterResult | null>(null);
+  const [data, setData] = useState<CharacterResponse | ErrorResponse | null>(
+    null
+  );
 
   const getCharacter = () => {
     fetch(`https://tibia.bieda.it/api/tibia-eocf/v1/characters/${input}`)
@@ -14,7 +16,7 @@ function MainContainer() {
         return res.json();
       })
       .then((data) => {
-        setCharacter(data);
+        setData(data);
       });
   };
 
@@ -35,9 +37,7 @@ function MainContainer() {
         </Col>
       </Row>
       <Row className="justify-content-md-center">
-        <Col md="auto">
-          {character && <Character propertyValue={character} />}
-        </Col>
+        <Col md="auto">{data && <CharacterResult propertyValue={data} />}</Col>
       </Row>
     </Container>
   );

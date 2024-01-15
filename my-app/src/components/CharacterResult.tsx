@@ -1,14 +1,36 @@
-import { CharacterResult } from "../types/CharacterResult";
+import { CharacterResponse, ErrorResponse } from "../types/CharacterResult";
 import { format } from "date-fns";
 import CharacterBasicProperty from "./BasicPropertyResult";
 import StringArrayResult from "./StringArrayResult";
 import CharactersArrayResult from "./CharactersArrayResult";
+import { Alert } from "react-bootstrap";
 
 type Props = {
-  propertyValue: CharacterResult;
+  propertyValue: CharacterResponse | ErrorResponse;
 };
 
-function Character(props: Props) {
+function CharacterResult(props: Props) {
+  return (
+    <div
+      className="d-grid mt-4"
+      style={{ minWidth: "500px", maxWidth: "1000px" }}
+    >
+      {"detail" in props.propertyValue
+        ? renderError(props.propertyValue as ErrorResponse)
+        : renderResponse(props.propertyValue as CharacterResponse)}
+    </div>
+  );
+}
+
+function renderError(error: ErrorResponse) {
+  return (
+    <Alert key="danger" variant="danger">
+      {error.detail}
+    </Alert>
+  );
+}
+
+function renderResponse(response: CharacterResponse) {
   const {
     name,
     world,
@@ -20,13 +42,10 @@ function Character(props: Props) {
     traded,
     otherVisibleCharacters,
     possibleInvisibleCharacters,
-  } = props.propertyValue;
+  } = response;
 
   return (
-    <div
-      className="d-grid mt-4"
-      style={{ minWidth: "500px", maxWidth: "1000px" }}
-    >
+    <>
       <CharacterBasicProperty
         propertyName="Name"
         propertyValue={`${name} ${traded ? "(traded)" : ""}`}
@@ -57,8 +76,8 @@ function Character(props: Props) {
         propertyName="Possible Other Characters"
         propertyValue={possibleInvisibleCharacters}
       />
-    </div>
+    </>
   );
 }
 
-export default Character;
+export default CharacterResult;

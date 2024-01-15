@@ -1,9 +1,9 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
-import { PossibleInvisibleCharacterResult } from "../types/CharacterResult";
+import { PossibleInvisibleCharacterResponse } from "../types/CharacterResult";
 import { format } from "date-fns";
 
 type Props = {
-  propertyValue: PossibleInvisibleCharacterResult[];
+  propertyValue: PossibleInvisibleCharacterResponse[];
   propertyName: string;
 };
 

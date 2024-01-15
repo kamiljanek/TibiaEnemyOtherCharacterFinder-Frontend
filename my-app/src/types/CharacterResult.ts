@@ -1,4 +1,4 @@
-export type CharacterResult = {
+export type CharacterResponse = {
   name: string;
   world: string;
   vocation: string;
@@ -8,12 +8,20 @@ export type CharacterResult = {
   formerWorlds: string[];
   traded: boolean;
   otherVisibleCharacters: string[];
-  possibleInvisibleCharacters: PossibleInvisibleCharacterResult[];
+  possibleInvisibleCharacters: PossibleInvisibleCharacterResponse[];
 };
 
-export type PossibleInvisibleCharacterResult = {
+export type PossibleInvisibleCharacterResponse = {
   otherCharacterName: string;
   numberOfMatches: number;
   firstMatchDateOnly: Date;
   lastMatchDateOnly: Date;
+};
+
+export type ErrorResponse = {
+  type: string;
+  title: string;
+  status: number;
+  detail: string;
+  instance: string;
 };
