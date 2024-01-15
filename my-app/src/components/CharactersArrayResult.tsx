@@ -17,21 +17,23 @@ function CharactersArrayResult(props: Props) {
         <Accordion.Body>
           <Container fluid>
             <Row className="align-items-center">
-              <Col></Col>
+              <Col>
+                <b>NAME</b>
+              </Col>
               <Col sm={1} className="text-center">
-                SP
+                <b>SP</b>
               </Col>
               <Col sm={2} className="text-center">
-                FMD
+                <b>FMD</b>
               </Col>
               <Col sm={2} className="text-center">
-                LMD
+                <b>LMD</b>
               </Col>
             </Row>
 
             {props.propertyValue.map((item) => (
               <Row className="align-items-center">
-                <Col>{item.otherCharacterName}</Col>
+                <Col>{toPascalCase(item.otherCharacterName)}</Col>
                 <Col sm={1} style={{ fontSize: 10 }} className="text-center">
                   {item.numberOfMatches}
                 </Col>
@@ -48,6 +50,12 @@ function CharactersArrayResult(props: Props) {
       </Accordion.Item>
     </Accordion>
   );
+}
+
+function toPascalCase(s: string) {
+  return s.replace(/(\w)(\w*)/g, function (g0, g1, g2) {
+    return g1.toUpperCase() + g2.toLowerCase();
+  });
 }
 
 export default CharactersArrayResult;

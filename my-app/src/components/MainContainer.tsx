@@ -1,23 +1,26 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { CharacterResponse, ErrorResponse } from "../types/CharacterResult";
 import { useState } from "react";
 import CharacterResult from "./CharacterResult";
 
 function MainContainer() {
   const [input, setInput] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState<CharacterResponse | ErrorResponse | null>(
     null
   );
 
-  const getCharacter = () => {
-    fetch(`https://tibia.bieda.it/api/tibia-eocf/v1/characters/${input}`)
+  const fetchData = async () => {
+    setLoading(true);
+    await fetch(`https://tibia.bieda.it/api/tibia-eocf/v1/characters/${input}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setData(data);
       });
+    setLoading(false);
   };
 
   return (
@@ -31,9 +34,13 @@ function MainContainer() {
           />
         </Col>
         <Col md="auto">
-          <Button variant="outline-info" onClick={() => getCharacter()}>
-            Search
-          </Button>
+          {loading ? (
+            <Spinner animation="border" />
+          ) : (
+            <Button variant="outline-info" onClick={() => fetchData()}>
+              Search
+            </Button>
+          )}
         </Col>
       </Row>
       <Row className="justify-content-md-center">
