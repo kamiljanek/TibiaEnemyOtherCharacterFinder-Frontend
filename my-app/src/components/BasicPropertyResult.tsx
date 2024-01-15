@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, OverlayTrigger, Popover } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 type Props = {
   propertyValue: string | number;
