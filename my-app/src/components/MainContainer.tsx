@@ -22,15 +22,33 @@ function MainContainer() {
   const [promptData, setPromptData] = useState<string[]>([]);
   const [show, setShow] = useState(false);
   const [characterName, setCharacterName] = useState<string>("");
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (loading === false && characterName !== "") {
       setLoading(true);
       fetchCharacterData(characterName, setLoading, setCharacterData);
       setInput(characterName);
+      setShow(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterName]);
+
+  useEffect(() => {
+    setInput(searchText);
+
+    const delayDebounce = setTimeout(() => {
+      if (searchText.length > 2) {
+        fetchPromptData(searchText, setPromptData);
+        setShow(true);
+      }
+      if (searchText.length < 3) {
+        setShow(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchText]);
 
   return (
     <SearchedCharacterNameContext.Provider
@@ -44,17 +62,7 @@ function MainContainer() {
               autoFocus
               placeholder="Character Name"
               onChange={(event) => {
-                setInput(event.target.value);
-                if (event.target.value.length > 2) {
-                  setTimeout(() => {
-                    fetchPromptData(event.target.value, setPromptData);
-                    setShow(true);
-                  }, 1000);
-                }
-
-                if (event.target.value.length < 3) {
-                  setShow(false);
-                }
+                setSearchText(event.target.value);
               }}
               value={input}
             />
@@ -63,7 +71,6 @@ function MainContainer() {
                 <Dropdown.Item
                   onClick={() => {
                     setCharacterName(item);
-                    setShow(false);
                   }}
                 >
                   {item}
@@ -79,7 +86,6 @@ function MainContainer() {
                 variant="outline-info"
                 onClick={() => {
                   setCharacterName(input);
-                  setShow(false);
                 }}
               >
                 Search
