@@ -11,36 +11,45 @@ function CharactersArrayResult(props: Props) {
   return (
     <Accordion>
       <Accordion.Item eventKey="0" style={{ padding: 0 }}>
-        <Accordion.Header style={{ maxWidth: "1500px" }}>
-          {props.propertyName}
-        </Accordion.Header>
+        <Accordion.Header>{props.propertyName}</Accordion.Header>
         <Accordion.Body>
-          <Container fluid>
+          <Container
+            fluid
+            style={{ minWidth: "260px", width: "100%", maxWidth: "800px" }}
+          >
             <Row className="align-items-center">
               <Col>
                 <b>NAME</b>
               </Col>
-              <Col sm={1} className="text-center">
+              <Col
+                style={{ maxWidth: "20px" }}
+                className="text-center justify-content-end col-header"
+              >
                 <b>SP</b>
               </Col>
-              <Col sm={2} className="text-center">
+              <Col className="text-center justify-content-end col-header">
                 <b>FMD</b>
               </Col>
-              <Col sm={2} className="text-center">
+              <Col className="text-center justify-content-end col-header">
                 <b>LMD</b>
               </Col>
             </Row>
 
             {props.propertyValue.map((item) => (
               <Row className="align-items-center">
-                <Col>{toPascalCase(item.otherCharacterName)}</Col>
-                <Col sm={1} style={{ fontSize: 10 }} className="text-center">
+                <Col xs="auto" className="flex-grow-1">
+                  {toPascalCase(item.otherCharacterName)}
+                </Col>
+                <Col
+                  style={{ minWidth: "20px", maxWidth: "20px" }}
+                  className="text-center justify-content-end col-value"
+                >
                   {item.numberOfMatches}
                 </Col>
-                <Col sm={2} style={{ fontSize: 10 }} className="text-center">
+                <Col className="text-center justify-content-end col-value">
                   {format(item.firstMatchDateOnly, "yyyy-MM-dd")}
                 </Col>
-                <Col sm={2} style={{ fontSize: 10 }} className="text-center">
+                <Col className="text-center justify-content-end col-value">
                   {format(item.lastMatchDateOnly, "yyyy-MM-dd")}
                 </Col>
               </Row>

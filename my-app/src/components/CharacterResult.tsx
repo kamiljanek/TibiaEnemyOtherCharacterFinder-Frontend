@@ -11,10 +11,7 @@ type Props = {
 
 function CharacterResult(props: Props) {
   return (
-    <div
-      className="d-grid mt-4"
-      style={{ minWidth: "500px", maxWidth: "1000px" }}
-    >
+    <div className="d-grid mt-4">
       {"detail" in props.propertyValue
         ? renderError(props.propertyValue as ErrorResponse)
         : renderResponse(props.propertyValue as CharacterResponse)}

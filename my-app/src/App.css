@@ -2,6 +2,20 @@
   padding: 10px 20px;
 }
 
-.accordion-header {
-  max-width: 1500px;
+.accordion-body {
+  width: auto;
+}
+
+.col-header {
+  max-width: 60px;
+  padding: 0;
+  margin-left: 5px;
+}
+
+.col-value {
+  font-size: 10px;
+  min-width: 60px;
+  max-width: 60px;
+  padding: 0;
+  margin-left: 5px;
 }
