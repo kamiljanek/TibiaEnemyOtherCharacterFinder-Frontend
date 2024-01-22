@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import HeaderContainer from "./components/HeaderContainer";
 import { PageContainer } from "./components/PageContainer";
@@ -8,7 +7,8 @@ function App() {
   return (
     <PageContainer>
       <HeaderContainer />
-      <MainContainer></MainContainer>
+
+      <MainContainer />
       {/* <SearchBar></SearchBar> */}
       {/* <Main /> */}
       {/* <Character>{result}</Character> */}

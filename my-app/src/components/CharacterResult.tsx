@@ -68,6 +68,7 @@ function renderResponse(response: CharacterResponse) {
       <StringArrayResult
         propertyName="Other Visible Characters"
         propertyValue={otherVisibleCharacters}
+        characterName
       />
       <CharactersArrayResult
         propertyName="Possible Other Characters"

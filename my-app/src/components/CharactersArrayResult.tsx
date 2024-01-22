@@ -1,6 +1,8 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { PossibleInvisibleCharacterResponse } from "../types/CharacterResult";
 import { format } from "date-fns";
+import { useContext } from "react";
+import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameContext";
 
 type Props = {
   propertyValue: PossibleInvisibleCharacterResponse[];
@@ -8,6 +10,8 @@ type Props = {
 };
 
 function CharactersArrayResult(props: Props) {
+  const [_, setCharacterName] = useContext(SearchedCharacterNameContext);
+
   return (
     <Accordion>
       <Accordion.Item eventKey="0" style={{ padding: 0 }}>
@@ -18,7 +22,7 @@ function CharactersArrayResult(props: Props) {
             style={{ minWidth: "260px", width: "100%", maxWidth: "800px" }}
           >
             <Row className="align-items-center">
-              <Col>
+              <Col className="p-0">
                 <b>NAME</b>
               </Col>
               <Col
@@ -37,7 +41,13 @@ function CharactersArrayResult(props: Props) {
 
             {props.propertyValue.map((item) => (
               <Row className="align-items-center">
-                <Col xs="auto" className="flex-grow-1">
+                <Col
+                  xs="auto"
+                  className="flex-grow-1 character-link p-0"
+                  onClick={() => {
+                    setCharacterName(item.otherCharacterName);
+                  }}
+                >
                   {toPascalCase(item.otherCharacterName)}
                 </Col>
                 <Col

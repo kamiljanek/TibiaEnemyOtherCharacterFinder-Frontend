@@ -3,6 +3,7 @@
 }
 
 .accordion-body {
+  padding: 10px 15px;
   width: auto;
 }
 
@@ -18,4 +19,15 @@
   max-width: 60px;
   padding: 0;
   margin-left: 5px;
+}
+
+.character-link {
+  color: rgb(25, 135, 84);
+  font-weight: 400;
+  cursor: pointer;  
+  text-decoration: underline;
+}
+
+.character-link:hover {
+  color: #ffc107;
 }
