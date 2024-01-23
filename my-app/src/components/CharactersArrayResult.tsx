@@ -10,6 +10,7 @@ type Props = {
 };
 
 function CharactersArrayResult(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setCharacterName] = useContext(SearchedCharacterNameContext);
 
   return (
@@ -26,7 +27,7 @@ function CharactersArrayResult(props: Props) {
                 <b>NAME</b>
               </Col>
               <Col
-                style={{ maxWidth: "20px" }}
+                style={{ maxWidth: "30px" }}
                 className="text-center justify-content-end col-header"
               >
                 <b>SP</b>
@@ -51,7 +52,7 @@ function CharactersArrayResult(props: Props) {
                   {toPascalCase(item.otherCharacterName)}
                 </Col>
                 <Col
-                  style={{ minWidth: "20px", maxWidth: "20px" }}
+                  style={{ minWidth: "30px", maxWidth: "30px" }}
                   className="text-center justify-content-end col-value"
                 >
                   {item.numberOfMatches}

@@ -9,6 +9,7 @@ type Props = {
 };
 
 function StringArrayResult(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setCharacterName] = useContext(SearchedCharacterNameContext);
 
   return (
