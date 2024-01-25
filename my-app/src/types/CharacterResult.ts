@@ -18,6 +18,11 @@ export type PossibleInvisibleCharacterResponse = {
   lastMatchDateOnly: Date;
 };
 
+export type SimilarCharactersResponse = {
+  totalCount: number;
+  names: string[];
+};
+
 export type ErrorResponse = {
   type: string;
   title: string;

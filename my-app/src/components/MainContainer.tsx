@@ -16,9 +16,13 @@ import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameC
 function MainContainer() {
   const [input, setInput] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [characterData, setCharacterData] = useState<
+  const [characterResponse, setCharacterResponse] = useState<
     CharacterResponse | ErrorResponse | null
   >(null);
+  const [characterData, setCharacterData] = useState<CharacterResponse | null>(
+    null
+  );
+  const [errorData, setErrorData] = useState<ErrorResponse | null>(null);
   const [promptData, setPromptData] = useState<string[]>([]);
   const [show, setShow] = useState(false);
   const [characterName, setCharacterName] = useState<string>("");
@@ -27,7 +31,9 @@ function MainContainer() {
   useEffect(() => {
     if (loading === false && characterName !== "") {
       setLoading(true);
-      fetchCharacterData(characterName, setLoading, setCharacterData);
+      fetchCharacterData(characterName, setCharacterResponse).then(() =>
+        setLoading(false)
+      );
       setInput(characterName);
       setShow(false);
     }
@@ -35,8 +41,17 @@ function MainContainer() {
   }, [characterName]);
 
   useEffect(() => {
-    setInput(searchText);
+    if (characterResponse !== null && "detail" in characterResponse) {
+      setErrorData(characterResponse);
+    } else {
+      setCharacterData(characterResponse);
+    }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [characterResponse]);
+
+  useEffect(() => {
+    setInput(searchText);
     const delayDebounce = setTimeout(() => {
       if (searchText.length > 2) {
         fetchPromptData(searchText, setPromptData);
@@ -95,7 +110,9 @@ function MainContainer() {
         </Row>
         <Row>
           <Col xs="auto" style={{ minWidth: "320px" }}>
-            {characterData && <CharacterResult propertyValue={characterData} />}
+            {characterData && (
+              <CharacterResult characterResponse={characterData} />
+            )}
           </Col>
         </Row>
       </Container>

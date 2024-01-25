@@ -1,21 +1,19 @@
-import { CharacterResponse, ErrorResponse } from "../types/CharacterResult";
+import { CharacterResponse, ErrorResponse, SimilarCharactersResponse } from "../types/CharacterResult";
 
-const baseUrl = "https://tibia.bieda.it/api/tibia-eocf/v1/characters/";
+const baseUrl = "https://tibia.bieda.it/api/tibia-eocf/v1/characters";
 
-const fetchCharacterData = async (input: string, setLoading: (loading: boolean) => void, setCharacterData: (characterData: CharacterResponse | ErrorResponse | null) => void) => {
-    setLoading(true);
-    await fetch(`${baseUrl}${input}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setCharacterData(data);
-      });
-    setLoading(false);
+const fetchCharacterData = async (
+    input: string, 
+    setCharacterData: (characterData: CharacterResponse | ErrorResponse | null) => void
+  ) : Promise<void> => {
+      const result = await fetch(`${baseUrl}/${input}`);
+      const data = await result.json(); 
+      setCharacterData(data);
+      return Promise.resolve();
   };
 
 const fetchPromptData = async (input: string, setPromptData: (promptData: string[]) => void) => {
-    await fetch(`${baseUrl}prompt?searchText=${input}&page=1&pageSize=10`)
+    await fetch(`${baseUrl}/prompt?searchText=${input}&page=1&pageSize=10`)
       .then((res) => {
         return res.json();
       })
@@ -24,4 +22,14 @@ const fetchPromptData = async (input: string, setPromptData: (promptData: string
       });
   };
 
-export {fetchCharacterData, fetchPromptData};
+const fetchSimilarCharacterData = async (input: string, setSimilarCharactersData: (similarCharactersData: SimilarCharactersResponse | null) => void) => {
+    await fetch(`${baseUrl}?searchText=${input}&page=1&pageSize=10`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setSimilarCharactersData(data);
+      });
+  };
+
+export {fetchCharacterData, fetchPromptData, fetchSimilarCharacterData};

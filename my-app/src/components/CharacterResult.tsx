@@ -1,33 +1,29 @@
-import { CharacterResponse, ErrorResponse } from "../types/CharacterResult";
+import {
+  CharacterResponse,
+  SimilarCharactersResponse,
+} from "../types/CharacterResult";
 import { format } from "date-fns";
 import CharacterBasicProperty from "./BasicPropertyResult";
 import StringArrayResult from "./StringArrayResult";
 import CharactersArrayResult from "./CharactersArrayResult";
-import { Alert } from "react-bootstrap";
+import { useContext, useState } from "react";
+import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameContext";
 
 type Props = {
-  propertyValue: CharacterResponse | ErrorResponse;
+  characterResponse: CharacterResponse;
 };
 
 function CharacterResult(props: Props) {
-  return (
-    <div className="d-grid mt-4">
-      {"detail" in props.propertyValue
-        ? renderError(props.propertyValue as ErrorResponse)
-        : renderResponse(props.propertyValue as CharacterResponse)}
-    </div>
+  const [characterName, setCharacterName] = useContext(
+    SearchedCharacterNameContext
   );
-}
 
-function renderError(error: ErrorResponse) {
-  return (
-    <Alert key="danger" variant="danger">
-      {error.detail}
-    </Alert>
-  );
-}
+  const [similarCharacters, setSimilarCharacters] =
+    useState<SimilarCharactersResponse | null>(null);
+  const [statusCode, setStatusCode] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(10);
 
-function renderResponse(response: CharacterResponse) {
   const {
     name,
     world,
@@ -39,10 +35,23 @@ function renderResponse(response: CharacterResponse) {
     traded,
     otherVisibleCharacters,
     possibleInvisibleCharacters,
-  } = response;
+  } = props.characterResponse;
+  // useEffect(() => {
+  //   // if (statusCode === 404) {
+  //   fetchSimilarCharactersData(characterName, setSimilarCharacters);
+  //   // }
+  // }, [statusCode]);
 
+  // if ("detail" in props.propertyValue) {
+  //   return (
+  //     <RenderError
+  //       error={props.propertyValue as ErrorResponse}
+  //       similarCharacters={similarCharacters}
+  //     />
+  //   );
+  // }
   return (
-    <>
+    <div className="d-grid mt-4">
       <CharacterBasicProperty
         propertyName="Name"
         propertyValue={`${name} ${traded ? "(traded)" : ""}`}
@@ -74,7 +83,7 @@ function renderResponse(response: CharacterResponse) {
         propertyName="Possible Other Characters"
         propertyValue={possibleInvisibleCharacters}
       />
-    </>
+    </div>
   );
 }
 
