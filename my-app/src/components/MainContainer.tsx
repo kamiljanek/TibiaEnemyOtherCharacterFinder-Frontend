@@ -43,15 +43,14 @@ function MainContainer() {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    setSimilarCharacters(null);
     if (loading === false && characterName !== "") {
       setLoading(true);
       fetchCharacterData(characterName, setCharacterResponse).then(() =>
         setLoading(false)
       );
+      setSimilarCharacters(null);
       setInput(characterName);
       setShow(false);
-      setCurrentPage(1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterName]);
@@ -75,7 +74,13 @@ function MainContainer() {
         setSimilarCharacters
       ).then(() => setLoading(false));
     }
-  }, [errorData, currentPage]);
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (errorData?.status === 404) {
+      setCurrentPage(1);
+    }
+  }, [errorData]);
 
   useEffect(() => {
     setInput(searchText);
@@ -110,6 +115,13 @@ function MainContainer() {
                   setSearchText(event.target.value);
                 }}
                 value={input}
+                onBlur={() => setShow(false)}
+                onFocus={() => setShow(true)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    setCharacterName(input);
+                  }
+                }}
               />
               <Dropdown.Menu show={show}>
                 {promptData.map((item) => (
