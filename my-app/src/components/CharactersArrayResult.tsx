@@ -3,6 +3,7 @@ import { PossibleInvisibleCharacterResponse } from "../types/CharacterResult";
 import { format } from "date-fns";
 import { useContext } from "react";
 import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameContext";
+import { toPascalCase } from "../functions/StringModificator";
 
 type Props = {
   propertyValue: PossibleInvisibleCharacterResponse[];
@@ -70,12 +71,6 @@ function CharactersArrayResult(props: Props) {
       </Accordion.Item>
     </Accordion>
   );
-}
-
-function toPascalCase(s: string) {
-  return s.replace(/(\w)(\w*)/g, function (g0, g1, g2) {
-    return g1.toUpperCase() + g2.toLowerCase();
-  });
 }
 
 export default CharactersArrayResult;

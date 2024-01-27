@@ -8,7 +8,7 @@ type ErrorResponseProps = {
 function ErrorResult(props: ErrorResponseProps) {
   const { error } = props;
   return (
-    <Container>
+    <Container className="d-grid mt-4">
       <Row>
         <Col xs="auto" style={{ minWidth: "320px" }}>
           <Alert key="danger" variant="danger">
