@@ -2,7 +2,7 @@
 
 <h4 align="center">Example searching with suggestions</h>
 
-![](img/suggestions.png)
+![](img/suggestion.png)
 
 <h4 align="center">Example result</h>
 
