@@ -26,7 +26,7 @@ import { SimilarCharactersCurrentPageContext } from "../contexts/SimilarCharacte
 
 function MainContainer() {
   const [input, setInput] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [characterResponse, setCharacterResponse] = useState<
     CharacterResponse | ErrorResponse | null
