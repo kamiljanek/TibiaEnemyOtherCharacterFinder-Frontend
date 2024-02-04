@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/TibiaEnemyOtherCharacterFinder-Frontend/static/css/main.0aaff8eb.css",
+    "main.js": "/TibiaEnemyOtherCharacterFinder-Frontend/static/js/main.f44dba6e.js",
+    "static/js/787.d4aba7ab.chunk.js": "/TibiaEnemyOtherCharacterFinder-Frontend/static/js/787.d4aba7ab.chunk.js",
+    "index.html": "/TibiaEnemyOtherCharacterFinder-Frontend/index.html",
+    "main.0aaff8eb.css.map": "/TibiaEnemyOtherCharacterFinder-Frontend/static/css/main.0aaff8eb.css.map",
+    "main.f44dba6e.js.map": "/TibiaEnemyOtherCharacterFinder-Frontend/static/js/main.f44dba6e.js.map",
+    "787.d4aba7ab.chunk.js.map": "/TibiaEnemyOtherCharacterFinder-Frontend/static/js/787.d4aba7ab.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0aaff8eb.css",
+    "static/js/main.f44dba6e.js"
+  ]
+}
