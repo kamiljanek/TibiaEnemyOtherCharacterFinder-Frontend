@@ -40,10 +40,13 @@ function MainContainer() {
   const [promptData, setPromptData] = useState<string[]>([]);
   const [show, setShow] = useState(false);
   const [characterName, setCharacterName] = useState<string>("");
+  console.log(characterName);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
+    console.log("aaaaaaaaa");
     if (loading === false && characterName !== "") {
+      console.log("bbbbbbb");
       setLoading(true);
       fetchCharacterData(characterName, setCharacterResponse).then(() =>
         setLoading(false)
@@ -52,7 +55,6 @@ function MainContainer() {
       setInput(characterName);
       setShow(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterName]);
 
   useEffect(() => {
@@ -115,8 +117,11 @@ function MainContainer() {
                   setSearchText(event.target.value);
                 }}
                 value={input}
-                onBlur={() => setShow(false)}
-                onFocus={() => setShow(true)}
+                onFocus={(event) => {
+                  if (event.target.value.length > 2) {
+                    setShow(true);
+                  }
+                }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter") {
                     setCharacterName(input);
@@ -127,6 +132,8 @@ function MainContainer() {
                 {promptData.map((item) => (
                   <Dropdown.Item
                     onClick={() => {
+                      console.log(item);
+                      console.log("ccccc");
                       setCharacterName(item);
                     }}
                   >
