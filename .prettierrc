@@ -1,4 +1,8 @@
 {"singleQuote": false,
 "printWidth": 200,
-"rangeStart": 180,
-"rangeEnd": 220}
+"semi": true,
+"bracketSpacing": true,
+"bracketSameLine": true,
+"arrowParens": "avoid",
+"parser": "typescript"
+}

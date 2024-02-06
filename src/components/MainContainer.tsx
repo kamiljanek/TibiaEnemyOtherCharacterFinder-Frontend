@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Col, Container, Dropdown, Form, Row, Spinner } from "react-bootstrap";
 import { CharacterResponse, ErrorResponse, SimilarCharactersResponse } from "../types/CharacterResult";
 import { useEffect, useState } from "react";
@@ -21,13 +22,18 @@ function MainContainer() {
   const [characterName, setCharacterName] = useState<string>("");
   const [searchText, setSearchText] = useState("");
 
+  const showDropdownList = () => setShow(true);
+  const hideDropdownList = () => setShow(false);
+  const showLoader = () => setLoading(true);
+  const hideLoader = () => setLoading(false);
+
   useEffect(() => {
     if (loading === false && characterName !== "") {
-      setLoading(true);
-      fetchCharacterData(characterName, setCharacterResponse).then(() => setLoading(false));
+      showLoader();
+      fetchCharacterData(characterName, setCharacterResponse).then(() => hideLoader());
       setSimilarCharacters(null);
       setInput(characterName);
-      setShow(false);
+      hideDropdownList();
     }
   }, [characterName]);
 
@@ -43,8 +49,8 @@ function MainContainer() {
 
   useEffect(() => {
     if (errorData?.status === 404) {
-      setLoading(true);
-      fetchSimilarCharactersData(characterName, currentPage, setSimilarCharacters).then(() => setLoading(false));
+      showLoader();
+      fetchSimilarCharactersData(characterName, currentPage, setSimilarCharacters).then(() => hideLoader());
     }
   }, [currentPage]);
 
@@ -59,15 +65,15 @@ function MainContainer() {
     const delayDebounce = setTimeout(() => {
       if (searchText.length > 2) {
         fetchPromptData(searchText, setPromptData);
-        setShow(true);
+        showDropdownList();
       }
       if (searchText.length < 3) {
-        setShow(false);
+        hideDropdownList();
       }
     }, 500);
-
     return () => clearTimeout(delayDebounce);
   }, [searchText]);
+
   return (
     <SearchedCharacterNameContext.Provider value={[characterName, setCharacterName]}>
       <SimilarCharactersCurrentPageContext.Provider value={[currentPage, setCurrentPage]}>
@@ -78,28 +84,27 @@ function MainContainer() {
                 type="text"
                 autoFocus
                 placeholder="Character Name"
-                onChange={(event) => {setSearchText(event.target.value)}}
-                value={input}
-                onFocus={(event) => {
-                  if (event.target.value.length > 2) {
-                    setShow(true);
-                  }
+                onChange={event => {
+                  setSearchText(event.target.value);
                 }}
-                onBlur={() => {setTimeout(() => setShow(false), 100)}}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    setCharacterName(input);
-                  }
+                value={input}
+                onFocus={event => {
+                  event.target.value.length > 2 && showDropdownList();
+                }}
+                onBlur={() => {
+                  setTimeout(() => hideDropdownList(), 100);
+                }}
+                onKeyDown={event => {
+                  event.key === "Enter" && setCharacterName(input);
                 }}
               />
               <Dropdown.Menu show={show}>
-                {promptData.map((item) => (
+                {promptData.map(item => (
                   <Dropdown.Item
                     key={item}
                     onClick={() => {
                       setCharacterName(item);
-                    }}
-                  >
+                    }}>
                     {item}
                   </Dropdown.Item>
                 ))}
@@ -113,8 +118,7 @@ function MainContainer() {
                   variant="outline-info"
                   onClick={() => {
                     setCharacterName(input);
-                  }}
-                >
+                  }}>
                   Search
                 </Button>
               )}

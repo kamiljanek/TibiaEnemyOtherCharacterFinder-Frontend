@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { PossibleInvisibleCharacterResponse } from "../types/CharacterResult";
 import { format } from "date-fns";
@@ -11,7 +12,6 @@ type Props = {
 };
 
 function CharactersArrayResult(props: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setCharacterName] = useContext(SearchedCharacterNameContext);
 
   return (
@@ -19,18 +19,12 @@ function CharactersArrayResult(props: Props) {
       <Accordion.Item eventKey="0" style={{ padding: 0 }}>
         <Accordion.Header>{props.propertyName}</Accordion.Header>
         <Accordion.Body>
-          <Container
-            fluid
-            style={{ minWidth: "260px", width: "100%", maxWidth: "800px" }}
-          >
+          <Container fluid style={{ minWidth: "260px", width: "100%", maxWidth: "800px" }}>
             <Row className="align-items-center">
               <Col className="p-0">
                 <b>NAME</b>
               </Col>
-              <Col
-                style={{ maxWidth: "30px" }}
-                className="text-center justify-content-end col-header"
-              >
+              <Col style={{ maxWidth: "30px" }} className="text-center justify-content-end col-header">
                 <b>SP</b>
               </Col>
               <Col className="text-center justify-content-end col-header">
@@ -41,29 +35,21 @@ function CharactersArrayResult(props: Props) {
               </Col>
             </Row>
 
-            {props.propertyValue.map((item) => (
+            {props.propertyValue.map(item => (
               <Row key={item.otherCharacterName} className="align-items-center">
                 <Col
                   xs="auto"
                   className="flex-grow-1 character-link p-0"
                   onClick={() => {
                     setCharacterName(item.otherCharacterName);
-                  }}
-                >
+                  }}>
                   {toPascalCase(item.otherCharacterName)}
                 </Col>
-                <Col
-                  style={{ minWidth: "30px", maxWidth: "30px" }}
-                  className="text-center justify-content-end col-value"
-                >
+                <Col style={{ minWidth: "30px", maxWidth: "30px" }} className="text-center justify-content-end col-value">
                   {item.numberOfMatches}
                 </Col>
-                <Col className="text-center justify-content-end col-value">
-                  {format(item.firstMatchDateOnly, "yyyy-MM-dd")}
-                </Col>
-                <Col className="text-center justify-content-end col-value">
-                  {format(item.lastMatchDateOnly, "yyyy-MM-dd")}
-                </Col>
+                <Col className="text-center justify-content-end col-value">{format(item.firstMatchDateOnly, "yyyy-MM-dd")}</Col>
+                <Col className="text-center justify-content-end col-value">{format(item.lastMatchDateOnly, "yyyy-MM-dd")}</Col>
               </Row>
             ))}
           </Container>

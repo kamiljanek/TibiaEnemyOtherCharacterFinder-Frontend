@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Container, Row, Col, Table } from "react-bootstrap";
 import { SimilarCharactersResponse } from "../types/CharacterResult";
 import { toPascalCase } from "../functions/StringModificator";
@@ -11,32 +12,18 @@ type SimilarCharactersProps = {
 };
 
 function SimilarCharactersResult(props: SimilarCharactersProps) {
+  const { similarCharacters } = props;
   const [_, setCharacterName] = useContext(SearchedCharacterNameContext);
-
-  const [currentPage, setCurrentPage] = useContext(
-    SimilarCharactersCurrentPageContext
-  );
-
+  const [currentPage, setCurrentPage] = useContext(SimilarCharactersCurrentPageContext);
   const pageSize = 10;
   const totalPages = Math.ceil(props.similarCharacters.totalCount / pageSize);
 
-  const { similarCharacters } = props;
   return (
     <Container>
       {similarCharacters && (
         <Row>
-          <Col
-            xs="auto"
-            style={{ minWidth: "320px" }}
-            className="d-flex flex-column align-items-center"
-          >
-            <Table
-              striped
-              bordered
-              hover
-              variant="dark"
-              className="text-center"
-            >
+          <Col xs="auto" style={{ minWidth: "320px" }} className="d-flex flex-column align-items-center">
+            <Table striped bordered hover variant="dark" className="text-center">
               <thead>
                 <tr>
                   <th className="bg-success">
@@ -45,23 +32,16 @@ function SimilarCharactersResult(props: SimilarCharactersProps) {
                 </tr>
               </thead>
               <tbody>
-                {similarCharacters.names.map((name) => (
-                  <tr>
-                    <td
-                      className="character-link"
-                      onClick={() => setCharacterName(name)}
-                    >
+                {similarCharacters.names.map(name => (
+                  <tr key={name}>
+                    <td className="character-link" onClick={() => setCharacterName(name)}>
                       {toPascalCase(name)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </Table>
-            <PaginationResult
-              setCurrentPage={setCurrentPage}
-              currentPage={currentPage}
-              totalPages={totalPages}
-            />
+            <PaginationResult setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
           </Col>
         </Row>
       )}
