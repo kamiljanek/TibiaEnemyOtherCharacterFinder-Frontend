@@ -22,6 +22,7 @@ function StringArrayResult(props: Props) {
           {props.propertyValue.map((item) =>
             props.characterName ? (
               <div
+                key={item}
                 className="character-link"
                 onClick={() => {
                   setCharacterName(item);
@@ -30,7 +31,7 @@ function StringArrayResult(props: Props) {
                 {item}
               </div>
             ) : (
-              <div>{item}</div>
+              <div key={item}>{item}</div>
             )
           )}
         </Accordion.Body>
