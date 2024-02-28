@@ -1,6 +1,7 @@
 {
-  "homepage": "https://kamiljanek.github.io/TibiaEnemyOtherCharacterFinder-Frontend",
-  "name": "my-app",
+  "homepage": "https://kamiljanek.github.io/",
+  "homepage-ghpages": "https://kamiljanek.github.io/TibiaEnemyOtherCharacterFinder-Frontend",
+  "name": "tibia-stalker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
