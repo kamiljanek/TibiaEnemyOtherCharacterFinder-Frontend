@@ -8,7 +8,6 @@ import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameC
 import ErrorResult from "./RenderError";
 import SimilarCharactersResult from "./SimilarCharactersResult";
 import { SimilarCharactersCurrentPageContext } from "../contexts/SimilarCharactersCurrentPageContext";
-import TibiaLogo2Full from "./logos/TibiaLogo2Full";
 import { LOGO_SIZE } from "../utils/constants";
 import TibiaLogo2 from "./logos/TibiaLogo2";
 
