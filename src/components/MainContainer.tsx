@@ -8,6 +8,9 @@ import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameC
 import ErrorResult from "./RenderError";
 import SimilarCharactersResult from "./SimilarCharactersResult";
 import { SimilarCharactersCurrentPageContext } from "../contexts/SimilarCharactersCurrentPageContext";
+import TibiaLogo2Full from "./logos/TibiaLogo2Full";
+import { LOGO_SIZE } from "../utils/constants";
+import TibiaLogo2 from "./logos/TibiaLogo2";
 
 function MainContainer() {
   const [input, setInput] = useState<string>("");
@@ -74,58 +77,75 @@ function MainContainer() {
     return () => clearTimeout(delayDebounce);
   }, [searchText]);
 
+  const [isLogoClicked, setIsLogoClicked] = useState(false);
+
+  const toggleWidth = () => {
+    setIsLogoClicked(true);
+  };
+
+  const smallLogoSize = LOGO_SIZE * 0.4;
+
   return (
     <SearchedCharacterNameContext.Provider value={[characterName, setCharacterName]}>
       <SimilarCharactersCurrentPageContext.Provider value={[currentPage, setCurrentPage]}>
         <Container fluid className="d-flex flex-column align-items-center p-0">
-          <Row style={{ width: "320px" }}>
-            <Col>
-              <Form.Control
-                type="text"
-                autoFocus
-                placeholder="Character Name"
-                onChange={event => {
-                  setSearchText(event.target.value);
-                }}
-                value={input}
-                onFocus={event => {
-                  event.target.value.length > 2 && showDropdownList();
-                }}
-                onBlur={() => {
-                  setTimeout(() => hideDropdownList(), 100);
-                }}
-                onKeyDown={event => {
-                  event.key === "Enter" && setCharacterName(input);
-                }}
-              />
-              <Dropdown.Menu show={show}>
-                {promptData.map(item => (
-                  <Dropdown.Item
-                    key={item}
-                    onClick={() => {
-                      setCharacterName(item);
-                    }}>
-                    {item}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
+          <Row style={{ width: "360px" }} className="align-items-center">
+            <Col xs="auto" className="p-0 logo">
+              <div onClick={toggleWidth} className={isLogoClicked ? "targetPosition" : "centerPosition"}>
+                <TibiaLogo2 size={smallLogoSize} />
+              </div>
             </Col>
-            <Col xs="auto">
-              {loading ? (
-                <Spinner animation="border" />
-              ) : (
-                <Button
-                  variant="outline-info"
-                  onClick={() => {
-                    setCharacterName(input);
-                  }}>
-                  Search
-                </Button>
-              )}
+            <Col className={isLogoClicked ? "fadeIn" : "fadeOut"}>
+              <Row>
+                <Col className="p-1">
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    placeholder="Character Name"
+                    onChange={event => {
+                      setSearchText(event.target.value);
+                    }}
+                    value={input}
+                    onFocus={event => {
+                      event.target.value.length > 2 && showDropdownList();
+                    }}
+                    onBlur={() => {
+                      setTimeout(() => hideDropdownList(), 100);
+                    }}
+                    onKeyDown={event => {
+                      event.key === "Enter" && setCharacterName(input);
+                    }}
+                  />
+                  <Dropdown.Menu show={show}>
+                    {promptData.map(item => (
+                      <Dropdown.Item
+                        key={item}
+                        onClick={() => {
+                          setCharacterName(item);
+                        }}>
+                        {item}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Col>
+                <Col xs="auto" className="p-1">
+                  {loading ? (
+                    <Spinner animation="border" />
+                  ) : (
+                    <Button
+                      variant="outline-info"
+                      onClick={() => {
+                        setCharacterName(input);
+                      }}>
+                      Search
+                    </Button>
+                  )}
+                </Col>
+              </Row>
             </Col>
           </Row>
           <Row>
-            <Col xs="auto" style={{ minWidth: "320px" }}>
+            <Col xs="auto" style={{ minWidth: "320px", marginLeft: smallLogoSize }}>
               {characterData && <CharacterResult character={characterData} />}
               {errorData && <ErrorResult error={errorData} />}
               {similarCharacters && <SimilarCharactersResult similarCharacters={similarCharacters} />}

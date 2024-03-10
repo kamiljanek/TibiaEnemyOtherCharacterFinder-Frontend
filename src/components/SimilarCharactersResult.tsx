@@ -27,7 +27,7 @@ function SimilarCharactersResult(props: SimilarCharactersProps) {
               <thead>
                 <tr>
                   <th className="bg-success">
-                    <i>SIMILAR CARACTERS</i>
+                    <i>SIMILAR CHARACTERS</i>
                   </th>
                 </tr>
               </thead>

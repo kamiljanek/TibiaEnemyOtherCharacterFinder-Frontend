@@ -31,3 +31,32 @@
 .character-link:hover {
   color: #ffc107;
 }
+
+.logo {
+  cursor: pointer;
+}
+
+.logo :hover{
+  /* transition: filter 0.5s ease; */
+  filter: brightness(1.1);
+}
+
+.centerPosition{
+  transition: transform 1.5s ease;
+  transform: translateX(200%) scale(3);
+}
+
+.targetPosition{
+  transition: transform 1.5s ease;
+  transform: translateX(0%) scale(1);
+}
+
+.fadeOut {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+.fadeIn {
+  transition: opacity 0.5s ease 1s;
+  opacity: 1;
+}

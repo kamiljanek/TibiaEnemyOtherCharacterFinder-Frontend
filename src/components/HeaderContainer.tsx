@@ -1,18 +1,12 @@
-import { Col, Container, Row } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
+import { Container, Row } from "react-bootstrap";
+import TibiaLogo2 from "./logos/TibiaLogo2";
+import { LOGO_SIZE } from "../utils/constants";
 
 function HeaderContainer() {
   return (
     <Container fluid>
       <Row className="justify-content-center m-3">
-        <Col xs="auto">
-          <Image
-            src={`${process.env.PUBLIC_URL}/tibialogo.png`}
-            roundedCircle
-            alt="Page logo"
-            width="150px"
-          />
-        </Col>
+        <TibiaLogo2 size={LOGO_SIZE} />
       </Row>
     </Container>
   );
