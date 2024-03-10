@@ -3,14 +3,14 @@
 <table>
     <tr>
         <td>
-            Tibia Enemy Other Characters Finder - Frontend is a simple React.js with TypeScript application that helps players to detect other characters of their enemy.
+            Tibia Enemy Other Characters Finder - Frontend is a simple React.js with TypeScript application that helps players detect other characters of their enemy.
         </td>
     </tr>
 </table>
 
 ### Web Api
 
-You can check out https://kamiljanek.github.io/TibiaEnemyOtherCharacterFinder-Frontend
+You can check out https://www.tibiastalker.pl/
 
 ## Screenshots
 
