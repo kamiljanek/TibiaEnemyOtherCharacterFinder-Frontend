@@ -77,6 +77,17 @@ function MainContainer() {
   }, [searchText]);
 
   const [isLogoClicked, setIsLogoClicked] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isLogoClicked) {
+      timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [isLogoClicked]);
 
   const toggleWidth = () => {
     setIsLogoClicked(true);
@@ -88,9 +99,17 @@ function MainContainer() {
     <SearchedCharacterNameContext.Provider value={[characterName, setCharacterName]}>
       <SimilarCharactersCurrentPageContext.Provider value={[currentPage, setCurrentPage]}>
         <Container fluid className="d-flex flex-column align-items-center p-0">
+          <div className={`absoluteCenter align-items-center d-flex flex-column ${isLogoClicked ? "fadeOut" : "transform-50"}`}>
+            <div className="title logo" onClick={toggleWidth}>
+              Tibia Stalker
+            </div>
+            <div className="subtitle logo" onClick={toggleWidth}>
+              Click!
+            </div>
+          </div>
           <Row style={{ width: "360px" }} className="align-items-center">
-            <Col xs="auto" className="p-0 logo">
-              <div onClick={toggleWidth} className={isLogoClicked ? "targetPosition" : "centerPosition"}>
+            <Col xs="auto" className="p-0 logo" onClick={toggleWidth}>
+              <div className={isLogoClicked ? "targetPosition" : "centerPosition"}>
                 <TibiaLogo2 size={smallLogoSize} />
               </div>
             </Col>

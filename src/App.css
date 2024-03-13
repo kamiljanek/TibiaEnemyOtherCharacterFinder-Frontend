@@ -34,16 +34,16 @@
 
 .logo {
   cursor: pointer;
+  z-index: 999;
 }
 
-.logo :hover{
-  /* transition: filter 0.5s ease; */
-  filter: brightness(1.1);
+.logo:hover{
+  filter: brightness(1.2);
 }
 
 .centerPosition{
   transition: transform 1.5s ease;
-  transform: translateX(200%) scale(3);
+  transform: translateX(255%) scale(2);
 }
 
 .targetPosition{
@@ -52,11 +52,46 @@
 }
 
 .fadeOut {
-  transition: opacity 0.5s;
+  transition: opacity 0.5s, transform 0.5s ease 1s; /* Dodaj transform do transition */
   opacity: 0;
+  transform: scale(0);
 }
 
 .fadeIn {
   transition: opacity 0.5s ease 1s;
   opacity: 1;
+}
+
+.title, .subtitle {
+  color: #b49566;
+}
+
+.absoluteCenter {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+}
+
+.transform-50 {
+  transform: translate(-50%);
+}
+
+.title {
+  font-size: xx-large;
+  /* font-family: 'Courier New', Courier, monospace; */
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: 'Times New Roman', Times, serif; */
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
+.subtitle {
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
