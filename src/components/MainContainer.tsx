@@ -77,17 +77,6 @@ function MainContainer() {
   }, [searchText]);
 
   const [isLogoClicked, setIsLogoClicked] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isLogoClicked) {
-      timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 1000);
-    }
-    return () => clearTimeout(timer);
-  }, [isLogoClicked]);
 
   const toggleWidth = () => {
     setIsLogoClicked(true);
@@ -104,7 +93,7 @@ function MainContainer() {
               Tibia Stalker
             </div>
             <div className="subtitle logo" onClick={toggleWidth}>
-              Click!
+              Click here!
             </div>
           </div>
           <Row style={{ width: "360px" }} className="align-items-center">
