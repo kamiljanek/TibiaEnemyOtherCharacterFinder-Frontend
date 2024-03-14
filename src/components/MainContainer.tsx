@@ -88,13 +88,9 @@ function MainContainer() {
     <SearchedCharacterNameContext.Provider value={[characterName, setCharacterName]}>
       <SimilarCharactersCurrentPageContext.Provider value={[currentPage, setCurrentPage]}>
         <Container fluid className="d-flex flex-column align-items-center p-0">
-          <div className={`absoluteCenter align-items-center d-flex flex-column ${isLogoClicked ? "fadeOut" : "transform-50"}`}>
-            <div className="title logo" onClick={toggleWidth}>
-              Tibia Stalker
-            </div>
-            <div className="subtitle logo" onClick={toggleWidth}>
-              Click here!
-            </div>
+          <div className={`absoluteCenter align-items-center d-flex flex-column ${isLogoClicked ? "fadeOut" : "transform-50"}`} onClick={toggleWidth}>
+            <div className="title logo">Tibia Stalker</div>
+            <div className="subtitle logo">Click here!</div>
           </div>
           <Row style={{ width: "360px" }} className="align-items-center">
             <Col xs="auto" className="p-0 logo" onClick={toggleWidth}>
