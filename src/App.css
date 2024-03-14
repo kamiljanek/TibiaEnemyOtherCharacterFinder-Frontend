@@ -1,9 +1,11 @@
 .accordion-button {
-  padding: 10px 20px;
+  padding: 5px 20px;
+  font-size: 14px;
 }
 
 .accordion-body {
-  padding: 10px 15px;
+  padding: 5px 15px;
+  font-size: 14px;
   width: auto;
 }
 
