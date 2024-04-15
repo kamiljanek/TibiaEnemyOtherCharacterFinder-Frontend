@@ -6,16 +6,16 @@ import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameC
 type Props = {
   propertyValue: string[];
   isCharacterName?: boolean;
-  propertyName: string;
+  headerName: string;
 };
 
 function StringArrayResult(props: Props) {
   const [_, setCharacterName] = useContext(SearchedCharacterNameContext);
 
   return (
-    <Accordion>
-      <Accordion.Item eventKey="0" style={{ padding: 0 }}>
-        <Accordion.Header style={{ padding: 0 }}>{props.propertyName}</Accordion.Header>
+    <Accordion className="mb-1">
+      <Accordion.Item eventKey="0" className="p-0">
+        <Accordion.Header className="p-0">{props.headerName}</Accordion.Header>
         <Accordion.Body>
           {props.propertyValue.map(item =>
             props.isCharacterName ? (

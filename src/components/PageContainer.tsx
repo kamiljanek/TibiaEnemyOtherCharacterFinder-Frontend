@@ -1,23 +1,22 @@
-import { ReactNode } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { CSSProperties, ReactNode } from "react";
+import { Container } from "react-bootstrap";
 
 type Props = {
   children?: ReactNode;
 };
 
 export const PageContainer = (props: Props) => {
-  const containerStyle = {
+  const containerStyle: CSSProperties = {
     minHeight: "100vh",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   };
 
   return (
-    <Container fluid style={containerStyle}>
-      <Row>
-        <Col>{props.children}</Col>
-      </Row>
+    <Container fluid style={containerStyle} className="p-2">
+      {props.children}
     </Container>
   );
 };

@@ -20,21 +20,21 @@ function MainContainer() {
   const [errorData, setErrorData] = useState<ErrorResponse | null>(null);
   const [similarCharacters, setSimilarCharacters] = useState<SimilarCharactersResponse | null>(null);
   const [promptData, setPromptData] = useState<string[]>([]);
-  const [show, setShow] = useState(false);
+  const [dropdownListVisibility, setDropdownListVisibility] = useState(false);
   const [characterName, setCharacterName] = useState<string>("");
   const [searchText, setSearchText] = useState("");
 
-  const showDropdownList = () => setShow(true);
-  const hideDropdownList = () => setShow(false);
+  const showDropdownList = () => setDropdownListVisibility(true);
+  const hideDropdownList = () => setDropdownListVisibility(false);
   const showLoader = () => setLoading(true);
   const hideLoader = () => setLoading(false);
 
   useEffect(() => {
     if (loading === false && characterName !== "") {
       showLoader();
+      setInput(characterName);
       fetchCharacterData(characterName, setCharacterResponse).then(() => hideLoader());
       setSimilarCharacters(null);
-      setInput(characterName);
       hideDropdownList();
     }
   }, [characterName]);
@@ -72,7 +72,7 @@ function MainContainer() {
       if (searchText.length < 3) {
         hideDropdownList();
       }
-    }, 500);
+    }, 800);
     return () => clearTimeout(delayDebounce);
   }, [searchText]);
 
@@ -88,9 +88,13 @@ function MainContainer() {
     <SearchedCharacterNameContext.Provider value={[characterName, setCharacterName]}>
       <SimilarCharactersCurrentPageContext.Provider value={[currentPage, setCurrentPage]}>
         <Container fluid className="d-flex flex-column align-items-center p-0">
+          <div className={`absoluteCenter align-items-center d-flex flex-column ${isLogoClicked ? "fadeOut" : "transform-50"}`} onClick={toggleWidth}>
+            <div className="title logo">Tibia Stalker</div>
+            <div className="subtitle logo">Click here!</div>
+          </div>
           <Row style={{ width: "360px" }} className="align-items-center">
-            <Col xs="auto" className="p-0 logo">
-              <div onClick={toggleWidth} className={isLogoClicked ? "targetPosition" : "centerPosition"}>
+            <Col xs="auto" className="p-0 logo" onClick={toggleWidth}>
+              <div className={isLogoClicked ? "targetPosition" : "centerPosition"}>
                 <TibiaLogo2 size={smallLogoSize} />
               </div>
             </Col>
@@ -109,13 +113,13 @@ function MainContainer() {
                       event.target.value.length > 2 && showDropdownList();
                     }}
                     onBlur={() => {
-                      setTimeout(() => hideDropdownList(), 100);
+                      setTimeout(() => hideDropdownList(), 500);
                     }}
                     onKeyDown={event => {
                       event.key === "Enter" && setCharacterName(input);
                     }}
                   />
-                  <Dropdown.Menu show={show}>
+                  <Dropdown.Menu show={dropdownListVisibility}>
                     {promptData.map(item => (
                       <Dropdown.Item
                         key={item}

@@ -1,9 +1,11 @@
 .accordion-button {
-  padding: 10px 20px;
+  padding: 5px 10px;
+  font-size: 14px;
 }
 
 .accordion-body {
-  padding: 10px 15px;
+  padding: 5px 10px;
+  font-size: 14px;
   width: auto;
 }
 
@@ -34,16 +36,16 @@
 
 .logo {
   cursor: pointer;
+  z-index: 999;
 }
 
-.logo :hover{
-  /* transition: filter 0.5s ease; */
-  filter: brightness(1.1);
+.logo:hover{
+  filter: brightness(1.2);
 }
 
 .centerPosition{
   transition: transform 1.5s ease;
-  transform: translateX(200%) scale(3);
+  transform: translateX(255%) scale(2);
 }
 
 .targetPosition{
@@ -52,11 +54,42 @@
 }
 
 .fadeOut {
-  transition: opacity 0.5s;
+  transition: opacity 0.5s, transform 0.5s ease 1s;
   opacity: 0;
+  transform: scale(0);
 }
 
 .fadeIn {
   transition: opacity 0.5s ease 1s;
   opacity: 1;
+}
+
+.title, .subtitle {
+  color: #b49566;
+}
+
+.absoluteCenter {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+}
+
+.transform-50 {
+  transform: translate(-50%);
+}
+
+.title {
+  font-size: xx-large;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.subtitle {
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.footer {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: small;
+  color: #b49566;
 }
