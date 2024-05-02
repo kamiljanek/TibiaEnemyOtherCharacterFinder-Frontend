@@ -1,6 +1,6 @@
 import { CharacterResponse, ErrorResponse, SimilarCharactersResponse } from "../types/CharacterResult";
 
-const baseUrl = "https://tibia.bieda.it/api/tibia-eocf/v1/characters";
+const baseUrl = "https://tibia.bieda.it/api/tibia-stalker/v1/characters";
 
 const fetchCharacterData = async (
     input: string, 
