@@ -35,8 +35,8 @@ function CharactersArrayResult(props: Props) {
               </Col>
             </Row>
 
-            {props.propertyValue.map(item => (
-              <Row key={item.otherCharacterName} className="align-items-center">
+            {props.propertyValue.map((item, idx) => (
+              <Row key={`${idx}-${item.otherCharacterName}`} className="align-items-center">
                 <Col
                   xs="auto"
                   className="flex-grow-1 character-link p-0"
