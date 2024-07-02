@@ -28,6 +28,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "18.17.1"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
