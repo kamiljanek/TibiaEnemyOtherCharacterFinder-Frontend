@@ -1,8 +1,8 @@
-import "./App.css";
-import { PageContainer } from "./components/PageContainer";
-import MainContainer from "./components/MainContainer";
-import FooterContainer from "./components/FooterContainer";
 import { Row } from "react-bootstrap";
+
+import FooterContainer from "../components/FooterContainer";
+import MainContainer from "../components/MainContainer";
+import { PageContainer } from "../components/PageContainer";
 
 function App() {
   return (

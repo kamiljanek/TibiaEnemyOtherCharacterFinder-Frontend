@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Container, Row, Col, Table } from "react-bootstrap";
-import { SimilarCharactersResponse } from "../types/CharacterResult";
-import { toPascalCase } from "../functions/StringModificator";
 import { useContext } from "react";
+import { Col, Container, Row, Table } from "react-bootstrap";
+
 import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameContext";
-import PaginationResult from "./PaginationResult";
 import { SimilarCharactersCurrentPageContext } from "../contexts/SimilarCharactersCurrentPageContext";
+import { toPascalCase } from "../functions/StringModificator";
+import { SimilarCharactersResponse } from "../types/CharacterResult";
+import PaginationResult from "./PaginationResult";
 
 type SimilarCharactersProps = {
   similarCharacters: SimilarCharactersResponse;

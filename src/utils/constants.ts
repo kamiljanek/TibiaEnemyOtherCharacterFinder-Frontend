@@ -1,1 +1,1 @@
-export const LOGO_SIZE:number = 150;
+export const LOGO_SIZE = 150;

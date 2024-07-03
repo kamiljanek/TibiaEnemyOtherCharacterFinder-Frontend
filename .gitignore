@@ -24,4 +24,4 @@ yarn-error.log*
 
 # nextJS
 .next
-output
+out
