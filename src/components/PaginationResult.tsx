@@ -1,5 +1,5 @@
-import { Form, Pagination } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { Form, Pagination } from "react-bootstrap";
 
 type TotalCountProps = {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -24,7 +24,7 @@ function PaginationResult(props: TotalCountProps) {
     function synchronizeCurrentPageAndInput() {
       setInputValue(`${currentPage}`);
     },
-    [currentPage]
+    [currentPage],
   );
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
@@ -64,13 +64,13 @@ function PaginationResult(props: TotalCountProps) {
           size="sm"
           type="text"
           value={inputValue}
-          onChange={(event) => {
+          onChange={event => {
             handleInputChange(event.currentTarget.value);
           }}
-          onBlur={(event) => {
+          onBlur={event => {
             setCurrentPage(+event.currentTarget.value);
           }}
-          onKeyDown={(event) => {
+          onKeyDown={event => {
             if (event.key === "Enter") {
               event.currentTarget.blur();
             }

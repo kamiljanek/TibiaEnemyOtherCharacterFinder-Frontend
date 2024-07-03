@@ -1,8 +1,9 @@
-import { CharacterResponse } from "../types/CharacterResult";
 import { format } from "date-fns";
+
+import { CharacterResponse } from "../types/CharacterResult";
 import CharacterBasicProperty from "./BasicPropertyResult";
-import StringArrayResult from "./StringArrayResult";
 import CharactersArrayResult from "./CharactersArrayResult";
+import StringArrayResult from "./StringArrayResult";
 
 type Props = {
   character: CharacterResponse;
