@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext } from "react";
 import { Accordion } from "react-bootstrap";
+
 import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameContext";
 
 type Props = {
@@ -29,7 +30,7 @@ function StringArrayResult(props: Props) {
               </div>
             ) : (
               <div key={item}>{item}</div>
-            )
+            ),
           )}
         </Accordion.Body>
       </Accordion.Item>

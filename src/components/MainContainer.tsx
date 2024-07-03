@@ -1,15 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Col, Container, Dropdown, Form, Row, Spinner } from "react-bootstrap";
-import { CharacterResponse, ErrorResponse, SimilarCharactersResponse } from "../types/CharacterResult";
 import { useEffect, useState } from "react";
-import CharacterResult from "./CharacterResult";
-import { fetchCharacterData, fetchPromptData, fetchSimilarCharactersData } from "../functions/FetchData";
+import { Button, Col, Container, Dropdown, Form, Row, Spinner } from "react-bootstrap";
+
 import { SearchedCharacterNameContext } from "../contexts/SearchedCharacterNameContext";
+import { SimilarCharactersCurrentPageContext } from "../contexts/SimilarCharactersCurrentPageContext";
+import { fetchCharacterData, fetchPromptData, fetchSimilarCharactersData } from "../functions/FetchData";
+import { CharacterResponse, ErrorResponse, SimilarCharactersResponse } from "../types/CharacterResult";
+import { LOGO_SIZE } from "../utils/constants";
+import CharacterResult from "./CharacterResult";
+import TibiaLogo2 from "./logos/TibiaLogo2";
 import ErrorResult from "./RenderError";
 import SimilarCharactersResult from "./SimilarCharactersResult";
-import { SimilarCharactersCurrentPageContext } from "../contexts/SimilarCharactersCurrentPageContext";
-import { LOGO_SIZE } from "../utils/constants";
-import TibiaLogo2 from "./logos/TibiaLogo2";
 
 function MainContainer() {
   const [input, setInput] = useState<string>("");
@@ -42,9 +42,14 @@ function MainContainer() {
   useEffect(() => {
     setErrorData(null);
     setCharacterData(null);
-    if (characterResponse !== null && "detail" in characterResponse) {
+
+    if (characterResponse === null) {
+      return;
+    }
+
+    if ("detail" in characterResponse) {
       setErrorData(characterResponse);
-    } else {
+    } else if ("name" in characterResponse) {
       setCharacterData(characterResponse);
     }
   }, [characterResponse]);
