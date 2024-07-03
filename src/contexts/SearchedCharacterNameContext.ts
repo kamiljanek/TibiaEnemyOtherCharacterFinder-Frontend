@@ -1,3 +1,3 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from "react";
 
 export const SearchedCharacterNameContext = createContext<[string, Dispatch<SetStateAction<string>>]>(["", () => {}]);
