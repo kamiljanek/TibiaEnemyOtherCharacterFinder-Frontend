@@ -1,9 +1,9 @@
-# _Tibia Enemy Other Characters Finder - Frontend_
+# _Tibia Stalker - Frontend_
 
 <table>
     <tr>
         <td>
-            Tibia Enemy Other Characters Finder - Frontend is a simple React.js with TypeScript application that helps players detect other characters of their enemy.
+            Tibia Stalker - Frontend is a simple React.js with TypeScript application that helps players detect other characters of their enemy.
         </td>
     </tr>
 </table>
