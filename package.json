@@ -42,7 +42,7 @@
     "lint:fix": "prettier . --write || eslint . --fix"
   },
   "engines": {
-    "node": "18.17.1"
+    "node": "^20"
   },
   "browserslist": {
     "production": [
