@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Dropdown, Form, Row, Spinner } from "react-bootstrap";
 
@@ -43,9 +42,14 @@ function MainContainer() {
   useEffect(() => {
     setErrorData(null);
     setCharacterData(null);
-    if (characterResponse !== null && "detail" in characterResponse) {
+
+    if (characterResponse === null) {
+      return;
+    }
+
+    if ("detail" in characterResponse) {
       setErrorData(characterResponse);
-    } else {
+    } else if ("name" in characterResponse) {
       setCharacterData(characterResponse);
     }
   }, [characterResponse]);
